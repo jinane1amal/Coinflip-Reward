@@ -1,0 +1,4 @@
+The two presented in class Transparent and UPPS are quite similar in the way they delegate all calls to one implementation, except:
+The transparent has its logic contract in the proxy’s contract while the UPPS one actually owns  it.
+Another different known mechanism for smart contracts would be the EIP-2535 called the diamond pattern which enables the proxy « diamond » contract to assign calls to multiple implementation contracts (The main difference that opposes this method to the two seen in class), thus improving upgrades flexibility and their organisation.It also betters scalability and gaz efficiency but it entails careful storage management. 
+This diamond pattern would be a good idea to use for complex smart contracts.
