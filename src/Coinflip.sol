@@ -5,12 +5,14 @@ import {Initializable} from "@openzeppelin/contracts-upgradeable/proxy/utils/Ini
 import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 import {UUPSUpgradeable} from "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+import "./Dauphine.sol";
 
 error SeedTooShort();
 
 contract Coinflip is Initializable, OwnableUpgradeable, UUPSUpgradeable {
     /// @custom:oz-upgrades-unsafe-allow constructor
     string public seed;
+    DauphineToken public token; 
 
     constructor() {
         _disableInitializers();
@@ -20,6 +22,8 @@ contract Coinflip is Initializable, OwnableUpgradeable, UUPSUpgradeable {
         __Ownable_init(initialOwner);
         __UUPSUpgradeable_init();
         seed = "It is a good practice to rotate seeds often in gambling";
+        token = new DauphineToken();
+        token.transferOwnership(address(this));
     }
 
     function UserInput(uint8[10] calldata Guesses) external view returns(bool){
